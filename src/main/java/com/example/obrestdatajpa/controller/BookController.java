@@ -113,12 +113,25 @@ public class BookController {
         try {
             if (book.isPresent()) {
                 bookRepository.delete(book.get());
-                return ResponseEntity.status(200).body("Libro borrado");
+                return ResponseEntity.status(200).body("Book deleted");
             } else {
-                return ResponseEntity.badRequest().body("Id no encontrado");
+                return ResponseEntity.badRequest().body("ID not found");
             }
         } catch (Exception e) {
             return ResponseEntity.notFound().build();
+        }
+    }
+
+    // Borrar todos los libros de la base de datos
+    @DeleteMapping("/api/books")
+    public ResponseEntity<String> deleteAll() {
+        long caunt = bookRepository.count();
+
+        if (caunt == 0) {
+            return ResponseEntity.ok().body("There are no books to delete.");
+        } else {
+            bookRepository.deleteAll();
+            return ResponseEntity.ok("All books deleted successfully.");
         }
     }
 }

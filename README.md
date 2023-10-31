@@ -16,3 +16,9 @@ El acceso se puede realizar desde Postman o Navegador.
 1. Book
 2. BookRepository
 3. BookController
+   1. Buscar todos los libros
+   2. Buscar solo un libro
+   3. Crear un libro
+   4. Actualizar un libro
+   5. Borrar un Libro
+   6. Borrar todos los libros

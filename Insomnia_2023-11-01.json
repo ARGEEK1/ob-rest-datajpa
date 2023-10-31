@@ -1,0 +1,231 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2023-10-31T23:00:42.883Z",
+  "__export_source": "insomnia.desktop.app:v8.3.0",
+  "resources": [
+    {
+      "_id": "req_bd14a60375ab4f18bd87f81616b2fd0a",
+      "parentId": "wrk_61b5eb42eb154ca7a754e02e458004dd",
+      "modified": 1698793017249,
+      "created": 1698791903254,
+      "url": "http://localhost:8081/api/books",
+      "name": "/api/books Delete All Books",
+      "description": "",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "User-Agent",
+          "value": "insomnia/8.3.0"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1698791903254,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "wrk_61b5eb42eb154ca7a754e02e458004dd",
+      "parentId": null,
+      "modified": 1698706657183,
+      "created": 1698706657183,
+      "name": "curso de spring",
+      "description": "",
+      "scope": "collection",
+      "_type": "workspace"
+    },
+    {
+      "_id": "req_464f4b5908be4243afca2f41894b8400",
+      "parentId": "wrk_61b5eb42eb154ca7a754e02e458004dd",
+      "modified": 1698792990126,
+      "created": 1698783112331,
+      "url": "http://localhost:8081/api/books/2",
+      "name": "/api/books/id Delete By Id",
+      "description": "",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "User-Agent",
+          "value": "insomnia/8.3.0"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1698783112331,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_c4e58135c2be4d4cbd034981d1cf6f22",
+      "parentId": "wrk_61b5eb42eb154ca7a754e02e458004dd",
+      "modified": 1698792932701,
+      "created": 1698773520835,
+      "url": "http://localhost:8081/api/books/1",
+      "name": "/api/books/id Update Book",
+      "description": "",
+      "method": "PUT",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\t\"title\": \"La Amenaza Fantastma\",\n\t\t\"author\": \"ames Gosling y otros\",\n\t\t\"pages\": 600,\n\t\t\"price\": 20.5,\n\t\t\"releaseDate\": \"1996-01-23\",\n\t\t\"online\": false\n\t}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "User-Agent",
+          "value": "insomnia/8.3.0"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1698773520835,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_f2ea2da9a69249da9133542e565e2774",
+      "parentId": "wrk_61b5eb42eb154ca7a754e02e458004dd",
+      "modified": 1698792920215,
+      "created": 1698712557542,
+      "url": "http://localhost:8081/api/books",
+      "name": "/api/books Create Book",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\n\t\"title\": \"Star Wars\",\n\t\"author\": \"Lucas\",\n\t\"pages\": 500,\n\t\"price\": 10.5,\n\t\"releaseDate\": \"2000-01-23\",\n\t\"online\": true\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_33aa20f363974c62998f692bc0f0fd54"
+        },
+        {
+          "name": "User-Agent",
+          "value": "insomnia/8.3.0",
+          "id": "pair_befe586756d94c97a02ad30d95d1a890"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1698712557542,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_afbba3df0d1a4256a3cc4cde85348c4f",
+      "parentId": "wrk_61b5eb42eb154ca7a754e02e458004dd",
+      "modified": 1698792905575,
+      "created": 1698712416713,
+      "url": "http://localhost:8081/api/books/2",
+      "name": "/api/books/id Find By Id",
+      "description": "",
+      "method": "GET",
+      "body": {
+        "mimeType": "application/json",
+        "text": ""
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "User-Agent",
+          "value": "insomnia/8.3.0"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1698712416713,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_62b10b5b89e74f7bbd867f3f007a224e",
+      "parentId": "wrk_61b5eb42eb154ca7a754e02e458004dd",
+      "modified": 1698792868482,
+      "created": 1698709245221,
+      "url": "http://localhost:8081/api/books",
+      "name": "/api/books All BooKs",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "User-Agent",
+          "value": "insomnia/8.3.0"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1698709245221,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "env_ad38faee4f2abdf5375055021664fece7127cd67",
+      "parentId": "wrk_61b5eb42eb154ca7a754e02e458004dd",
+      "modified": 1698706657186,
+      "created": 1698706657186,
+      "name": "Base Environment",
+      "data": {},
+      "dataPropertyOrder": null,
+      "color": null,
+      "isPrivate": false,
+      "metaSortKey": 1698706657186,
+      "_type": "environment"
+    },
+    {
+      "_id": "jar_ad38faee4f2abdf5375055021664fece7127cd67",
+      "parentId": "wrk_61b5eb42eb154ca7a754e02e458004dd",
+      "modified": 1698706657188,
+      "created": 1698706657188,
+      "name": "Default Jar",
+      "cookies": [],
+      "_type": "cookie_jar"
+    }
+  ]
+}

@@ -2,6 +2,8 @@ package com.example.obrestdatajpa.controller;
 
 import com.example.obrestdatajpa.entities.Book;
 import com.example.obrestdatajpa.repository.BookRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +13,7 @@ import java.util.Optional;
 
 @RestController
 public class BookController {
+    private final Logger log = LoggerFactory.getLogger(BookController.class);
 
     // Atributos
     private BookRepository bookRepository;
@@ -41,11 +44,11 @@ public class BookController {
         Optional<Book> bookOpt = bookRepository.findById(id);
 
         // opción 1
-             if (bookOpt.isPresent()) {
-                 return ResponseEntity.ok(bookOpt.get());
-            } else {
-                return ResponseEntity.notFound().build();
-            }
+        if (bookOpt.isPresent()) {
+            return ResponseEntity.ok(bookOpt.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
 
         /*
          opción 2
@@ -56,17 +59,34 @@ public class BookController {
 
 
     // Crear un nuevo libro en base de datos
+
+    /**
+     * Método POST, no colisiona con findAll porque son diferentes métodos HTTP.
+     *
+     * @param book
+     * @param headers
+     * @return
+     */
     @PostMapping("/api/books")
-    public Book save(@RequestBody Book book, @RequestHeader HttpHeaders headers) {
+    public ResponseEntity<Book> save(@RequestBody Book book, @RequestHeader HttpHeaders headers) {
 
-        System.out.println( headers.get("User-Agent"));
+        System.out.println(headers.get("User-Agent"));
 
-        return bookRepository.save(book);
+        if (book.getId() != null) { // quiere decir que existe el id, por lo tanto no es una creación.
+            log.warn("trying to create a book with id");
+            System.out.println("trying to create a book with id");
+
+            return ResponseEntity.badRequest().build();
+        }
+
+        Book result = bookRepository.save(book);
+        return ResponseEntity.ok(result);
     }
 
     // Actualizar un libro en base de datos
     @PutMapping("/api/books/{id}")
-    public Book update(@RequestBody Book request, @PathVariable Long id) {
+    public ResponseEntity<Book> update(@RequestBody Book request, @PathVariable Long id) {
+
         Book book = bookRepository.findById(id).orElse(null);
 
         if (book != null) {
@@ -78,11 +98,27 @@ public class BookController {
             book.setOnline(request.getOnline());
 
             bookRepository.save(book);
-        }
 
-        return book;
+            return ResponseEntity.ok(book);
+        } else {
+            return ResponseEntity.badRequest().build();
+        }
     }
 
     // Borrar un libro en base de datos
+    @DeleteMapping("/api/books/{id}")
+    public ResponseEntity<String> delete(@PathVariable Long id) {
+        Optional<Book> book = bookRepository.findById(id);
 
+        try {
+            if (book.isPresent()) {
+                bookRepository.delete(book.get());
+                return ResponseEntity.status(200).body("Libro borrado");
+            } else {
+                return ResponseEntity.badRequest().body("Id no encontrado");
+            }
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }

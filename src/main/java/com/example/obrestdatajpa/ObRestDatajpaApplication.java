@@ -12,6 +12,7 @@ import java.time.LocalDate;
 public class ObRestDatajpaApplication {
 
     public static void main(String[] args) {
+
         ApplicationContext context = SpringApplication.run(ObRestDatajpaApplication.class, args);
         BookRepository bookRepository = context.getBean(BookRepository.class);
 
@@ -31,6 +32,7 @@ public class ObRestDatajpaApplication {
         // borrar un libro
         //bookRepository.deleteById(1L);
         System.out.println(bookRepository.count());
+
     }
 
 }

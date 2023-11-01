@@ -2,11 +2,14 @@ package com.example.obrestdatajpa.controller;
 
 import com.example.obrestdatajpa.entities.Book;
 import com.example.obrestdatajpa.repository.BookRepository;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.List;
 import java.util.Optional;
@@ -39,7 +42,8 @@ public class BookController {
 
     // Buscar un solo libro en base de datos, según su ID
     @GetMapping("/api/books/{id}")
-    public ResponseEntity<Book> findById(@PathVariable Long id) {
+    @ApiOperation("Buscar un libro por clave primaria id Long")
+    public ResponseEntity<Book> findById(@ApiParam("Clave primaria tipo Long") @PathVariable Long id) {
 
         Optional<Book> bookOpt = bookRepository.findById(id);
 
@@ -106,6 +110,7 @@ public class BookController {
     }
 
     // Borrar un libro en base de datos
+    @ApiIgnore
     @DeleteMapping("/api/books/{id}")
     public ResponseEntity<String> delete(@PathVariable Long id) {
         Optional<Book> book = bookRepository.findById(id);
@@ -123,6 +128,7 @@ public class BookController {
     }
 
     // Borrar todos los libros de la base de datos
+    @ApiIgnore
     @DeleteMapping("/api/books")
     public ResponseEntity<String> deleteAll() {
         long caunt = bookRepository.count();

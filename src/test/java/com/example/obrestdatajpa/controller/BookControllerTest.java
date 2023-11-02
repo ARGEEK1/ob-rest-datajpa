@@ -8,9 +8,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -46,14 +46,49 @@ class BookControllerTest {
 
     @Test
     void findAll() {
-        testRestTemplate.getForEntity("/api/books", List.class);
+        ResponseEntity<Book[]> response =
+                testRestTemplate.getForEntity("/api/books", Book[].class);
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(200, response.getStatusCodeValue());
+
+        List<Book> books = Arrays.asList(response.getBody());
+        System.out.println(books.size());
     }
 
     @Test
     void findById() {
+        ResponseEntity<Book> response =
+                testRestTemplate.getForEntity("/api/books/1", Book.class);
+
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
     }
 
     @Test
     void save() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+
+        String json = """
+                    {
+                        "title": "Star Wars",
+                        "author": "Lucas",
+                        "pages": 500,
+                        "price": 10.5,
+                        "releaseDate": "2000-01-23",
+                        "online": true
+                    }
+                """;
+        HttpEntity<String> request = new HttpEntity<>(json, headers);
+
+        ResponseEntity<Book> response =
+                testRestTemplate.exchange("/api/books", HttpMethod.POST, request, Book.class);
+
+        Book result = response.getBody();
+
+        System.out.println(result.getTitle());
+        assertEquals(1L, result.getId());
+        assertEquals("Star Wars", result.getTitle());
     }
 }
